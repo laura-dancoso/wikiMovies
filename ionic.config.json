@@ -1,0 +1,7 @@
+{
+  "name": "wikiMovies",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
