@@ -1,0 +1,16 @@
+<ng-container *ngIf="movie$ | async as movie">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="primary"></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{movie.title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  <!-- acá va el detalle de la peli -->
+  </ion-content>
+</ng-container>
