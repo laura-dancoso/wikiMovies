@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
-import { MovieComponent } from '../movie/movie.component';
-import { MOVIES } from 'src/app/mocks/getMovies';
 
 @Component({
   selector: 'movies-list',

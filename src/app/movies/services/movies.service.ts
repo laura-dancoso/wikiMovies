@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EmptyError, Observable, map, of, share, shareReplay, throwError, throwIfEmpty } from 'rxjs';
+import { Observable, map, of, shareReplay} from 'rxjs';
 import { MOVIES } from 'src/app/mocks/getMovies';
 import { Movie } from '../models/movie.model';
 import { HttpClient } from '@angular/common/http';
@@ -19,7 +19,6 @@ export class MoviesService {
    *
    * @returns Devuelve la lista de peliculas disponibles
    * La implementación de este método se modificará cuando tengamos disponible la API
-   * Pregunta: traemos toooda la info a movies? o solo la ppal y desp traemos la que sigue?? más que nada para los detalles
    */
   getMovies(): Observable<Movie[]> {
     return of(MOVIES).pipe(shareReplay());
