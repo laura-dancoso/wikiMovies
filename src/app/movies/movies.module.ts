@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { MoviesPage } from './movies.page';
 
 import { MoviesPageRoutingModule } from './movies-routing.module';
+import { MoviesListComponent } from './components/movies-list/movies-list.component';
+import { MovieComponent } from './components/movie/movie.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 @NgModule({
   imports: [
@@ -13,6 +16,11 @@ import { MoviesPageRoutingModule } from './movies-routing.module';
     FormsModule,
     MoviesPageRoutingModule
   ],
-  declarations: [MoviesPage]
+  declarations: [
+    MoviesPage,
+    MoviesListComponent,
+    MovieComponent,
+    MovieDetailComponent
+  ]
 })
 export class MoviesPageModule {}
