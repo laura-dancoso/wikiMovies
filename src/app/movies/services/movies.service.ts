@@ -23,6 +23,9 @@ export class MoviesService {
   getMovies(): Observable<Movie[]> {
     return of(MOVIES).pipe(shareReplay());
   }
+  // getMovies(): Observable<Movie[]> {
+  //   return this.httpClient.get<Movie[]>('http://localhost:3000/api/movies').pipe(shareReplay());
+  // }
 
   getMovie(id: number): Observable<Movie> {
     return this.movies$.pipe(

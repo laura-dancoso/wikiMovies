@@ -594,5 +594,79 @@ export const MOVIES: Movie[] = [
                 ]
             }
         ]
+    },
+    {
+        id: 9,
+        title: "GUARDIANES DE LA GALAXIA VOL 3",
+        releaseDate: new Date(),
+        genres: GENRES.slice(2,4),
+        description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum ipsa quas repellat expedita facilis doloremque natus nesciunt minus quis aliquam! Libero cupiditate reprehenderit asperiores perferendis accusantium atque commodi totam do",
+        duration: 163,
+        imageUrl:"https://static.cinemarkhoyts.com.ar/Images/Posters/8890e0f2327277844f17dd70d26b71ef.jpg?v=00002131",
+        showtimes:[
+            {
+                theater: THEATERS[0],
+                dates:[
+                    {
+                        date: new Date(2023,6,20),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,21),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,22),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,23),
+                        times: ["12:00", "15:30", "20:30"]
+                    }
+                ]
+            },
+            {
+                theater: THEATERS[1],
+                dates:[
+                    {
+                        date: new Date(2023,6,20),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,21),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,22),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,23),
+                        times: ["12:00", "15:30", "20:30"]
+                    }
+                ]
+            },
+            {
+                theater: THEATERS[2],
+                dates:[
+                    {
+                        date: new Date(2023,6,20),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,21),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,22),
+                        times: ["12:00", "15:30", "20:30"]
+                    },
+                    {
+                        date: new Date(2023,6,23),
+                        times: ["12:00", "15:30", "20:30"]
+                    }
+                ]
+            }
+        ]
     }
 ];

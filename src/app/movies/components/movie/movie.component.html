@@ -1,5 +1,6 @@
-<ion-card routerLink="{{movie.id}}">
-    <ion-card-header>
-      <ion-card-title>{{movie.title}}</ion-card-title>
-    </ion-card-header>
+<ion-card class="ion-no-border" [button]="true" routerLink="{{movie.id}}">
+  <img alt="{{movie.title}}" [src]="movie.imageUrl" />
+  <ion-card-header class="ion-no-border">
+    <ion-card-title>{{movie.title | uppercase}}</ion-card-title>
+  </ion-card-header>
 </ion-card>

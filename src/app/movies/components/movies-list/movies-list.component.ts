@@ -20,4 +20,8 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit() { }
 
+  handleRefresh(event: any) {
+    this.movies$ = this.moviesService.movies$;
+    event.target.complete();
+  }
 }
