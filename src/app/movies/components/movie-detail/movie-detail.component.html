@@ -7,27 +7,31 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-  <!--   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
-    </ion-refresher> -->
+    </ion-refresher> 
   <!-- acá va el detalle de la peli -->
   <div class="movie">
-    <ion-card>
+   
+    <ion-item lines="none">
       <img class="imgMovie" alt="{{movie.title}}" [src]="movie.imageUrl" />
-      {{movie.title | uppercase}}
-      <br>
-      DURACION 
-      <br>
-      {{movie.duration}} minutos
-
-    </ion-card>
+      <ion-label slot="end">
+        <h1>{{movie.title | uppercase}}</h1>
+        <br>
+        <p>DURACION</p>
+        <p>{{movie.duration}} minutos</p>
+      </ion-label>
+    </ion-item>
+  
   </div>
+  
   <div class="Genre">
-    Genero <br>
+    GENERO <br>
     {{movie.genres}} <!-- ver -->
   </div>
+
   <div class="description">
-    Description
+    DESCRIPCION
     <br>
     {{movie.description}}
   </div>
