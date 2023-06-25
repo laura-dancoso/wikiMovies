@@ -19,6 +19,7 @@ export class MovieDetailComponent  implements OnInit {
       params=>{
         this.id = parseInt(params['id']);
         this.movie$ = this.moviesService.getMovie(this.id);
+        
       }
     );
   }

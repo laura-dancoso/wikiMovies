@@ -7,9 +7,68 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <!--   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+    </ion-refresher> -->
   <!-- acá va el detalle de la peli -->
+  <div class="movie">
+    <ion-card>
+      <img class="imgMovie" alt="{{movie.title}}" [src]="movie.imageUrl" />
+      {{movie.title | uppercase}}
+      <br>
+      DURACION 
+      <br>
+      {{movie.duration}} minutos
+
+    </ion-card>
+  </div>
+  <div class="Genre">
+    Genero <br>
+    {{movie.genres}} <!-- ver -->
+  </div>
+  <div class="description">
+    Description
+    <br>
+    {{movie.description}}
+  </div>
+
+  <div class="theaters">
+    <ion-accordion-group>
+      <ion-accordion value="first"> <!--  n veces segun la cant de funciones  -->
+        <ion-item slot="header" color="light">
+          <ion-label>DIA</ion-label>
+        </ion-item>
+        <div slot="content">
+          <ion-card> <!-- n card segun a n cines -->
+            <ion-card-header> 
+              <ion-card-subtitle>CINE</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-chip>horario</ion-chip> <!-- repite n veces segun la cant de funciones en el dia en ese cine -->
+            </ion-card-content>
+          </ion-card>
+          
+        </div>
+      </ion-accordion>
+    <!--   <ion-accordion ion-accordion value="second">
+        <ion-item slot="header" color="light">
+          <ion-label>04 jun</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Cinemark palermo</div>
+        <div class="ion-padding" slot="content">Hoyts abasto</div>
+      </ion-accordion>
+      <ion-accordion value="third">
+        <ion-item slot="header" color="light">
+          <ion-label>05 jun</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Cinemark palermo</div>
+        <div class="ion-padding" slot="content">Hoyts abasto</div>
+      </ion-accordion>  LO QUE SE REPITE SEGUN LA CANT DE DIAS PARA LA PELICULA -->
+    </ion-accordion-group>
+    
+  </div>
+  
+
+  
   </ion-content>
 </ng-container>
