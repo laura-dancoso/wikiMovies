@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NameTabs } from '../enums/tabs-enum';
+import { ThemeService } from '../shared/theme/theme.service';
 
 @Component({
   selector: 'settings',
@@ -10,6 +11,8 @@ export class SettingsPage {
   
   title = NameTabs.Settings;
 
+  public darkMode!:boolean;
+
   selectConfiguration(label: 'Cines'|'Géneros'){
     return {
       header: label,
@@ -18,6 +21,11 @@ export class SettingsPage {
       translucent: true,
     }
   }
-  constructor() {}
+  constructor(private themeService: ThemeService) {
+    this.themeService.darkMode$.subscribe((dm)=> this.darkMode = dm);
+  }
 
+  toggleTheme(){
+    this.themeService.toggleTheme();
+  }
 }
