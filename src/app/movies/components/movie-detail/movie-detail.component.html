@@ -10,7 +10,6 @@
    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher> 
-  <!-- acá va el detalle de la peli -->
   <div class="movie">
    
     <ion-item lines="none">
@@ -22,12 +21,12 @@
         <p>{{movie.duration}} minutos</p>
       </ion-label>
     </ion-item>
-  
   </div>
   
   <div class="Genre">
-    GENERO <br>
-    {{movie.genres}} <!-- ver -->
+    GENEROS
+    <br>
+    {{getGenres(movie.genres)}}
   </div>
 
   <div class="description">
@@ -35,44 +34,24 @@
     <br>
     {{movie.description}}
   </div>
-
-  <div class="theaters">
-    <ion-accordion-group>
-      <ion-accordion value="first"> <!--  n veces segun la cant de funciones  -->
+  <!-- <div class="theaters">
+    <ion-accordion-group *ngFor="let showtime of movie.showtimes">
+      <ion-accordion value="first">  n veces segun la cant de funciones 
         <ion-item slot="header" color="light">
-          <ion-label>DIA</ion-label>
+          <ion-label>{{showtime}}</ion-label>
         </ion-item>
         <div slot="content">
-          <ion-card> <!-- n card segun a n cines -->
+          <ion-card> n card segun a n cines
             <ion-card-header> 
               <ion-card-subtitle>CINE</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-              <ion-chip>horario</ion-chip> <!-- repite n veces segun la cant de funciones en el dia en ese cine -->
+              <ion-chip>horario</ion-chip> repite n veces segun la cant de funciones en el dia en ese cine
             </ion-card-content>
           </ion-card>
-          
         </div>
       </ion-accordion>
-    <!--   <ion-accordion ion-accordion value="second">
-        <ion-item slot="header" color="light">
-          <ion-label>04 jun</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">Cinemark palermo</div>
-        <div class="ion-padding" slot="content">Hoyts abasto</div>
-      </ion-accordion>
-      <ion-accordion value="third">
-        <ion-item slot="header" color="light">
-          <ion-label>05 jun</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">Cinemark palermo</div>
-        <div class="ion-padding" slot="content">Hoyts abasto</div>
-      </ion-accordion>  LO QUE SE REPITE SEGUN LA CANT DE DIAS PARA LA PELICULA -->
     </ion-accordion-group>
-    
-  </div>
-  
-
-  
+  </div> -->
   </ion-content>
 </ng-container>
