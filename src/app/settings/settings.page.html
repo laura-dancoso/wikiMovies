@@ -38,5 +38,9 @@
         <ion-select-option value="Romance">Romance</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-icon name="contrast-outline" slot="start"></ion-icon>
+      <ion-toggle [checked]="darkMode" (ionChange)="toggleTheme()" >Dark mode</ion-toggle>
+    </ion-item>
   </ion-list>
 </ion-content>
