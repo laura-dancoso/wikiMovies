@@ -4,11 +4,13 @@ import { Theater } from "../../shared/theaters/models/theater.model";
 export interface Movie {
     id: number,
     title: string,
+    imageUrl: string
+}
+export interface MovieDetail extends Movie {
     releaseDate: Date | string,
     genres: Genre[],
     description: string,
     duration: number,
-    imageUrl: string,
     showtimes: {
         theater: Theater,
         dates: {

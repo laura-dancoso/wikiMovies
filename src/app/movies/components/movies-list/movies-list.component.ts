@@ -15,13 +15,13 @@ export class MoviesListComponent implements OnInit {
   constructor(
     private moviesService: MoviesService
   ) {
-    this.movies$ = this.moviesService.movies$;
+    this.movies$ = this.moviesService.getMovies();
   }
 
   ngOnInit() { }
 
   handleRefresh(event: any) {
-    this.movies$ = this.moviesService.movies$;
+    this.movies$ = this.moviesService.getMovies();
     event.target.complete();
   }
 }

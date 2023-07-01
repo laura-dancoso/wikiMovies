@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from '../../models/movie.model';
+import { Component, OnInit } from '@angular/core';
+import { MovieDetail } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailComponent  implements OnInit {
 
   id: number = 0;
-  movie$?: Observable<Movie>;
+  movie$?: Observable<MovieDetail>;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {
     this.route.params.subscribe(
