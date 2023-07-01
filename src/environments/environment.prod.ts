@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: ''
+  api: 'https://wiki-movies-api.vercel.app/api'
 };
