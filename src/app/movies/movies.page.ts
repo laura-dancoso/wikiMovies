@@ -4,6 +4,7 @@ import { MoviesService } from './services/movies.service';
 import { GenresService } from '../shared/genres/services/genres.service';
 import { TheatersService } from '../shared/theaters/services/theaters.service';
 import { MoviesListComponent } from './components/movies-list/movies-list.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'movies',
@@ -12,6 +13,6 @@ import { MoviesListComponent } from './components/movies-list/movies-list.compon
 })
 export class MoviesPage {
   
-  title = NameTabs.Movies;
+  title = `Prod: ${environment.production}`;
 
 }
