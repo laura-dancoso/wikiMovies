@@ -6,6 +6,7 @@ export interface Movie {
     title: string,
     imageUrl: string
 }
+
 export interface MovieDetail extends Movie {
     releaseDate: Date | string,
     genres: Genre[],
