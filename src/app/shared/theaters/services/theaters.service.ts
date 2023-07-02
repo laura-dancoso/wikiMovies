@@ -1,20 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { THEATERS } from 'src/app/mocks/getTheaters';
+import { Theater } from '../models/theater.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TheatersService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   /**
    *
    * @returns Devuelve la lista de cines disponibles
-   * La implementación de este método se modificará cuando tengamos disponible la API
    */
   getTheaters(){
-    return of(THEATERS);
+    return this.httpClient.get<Theater[]>(`${environment.api}/theaters`);
   }
 }

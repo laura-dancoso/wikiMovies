@@ -25,17 +25,13 @@
     <ion-item>
       <ion-icon name="film-outline" slot="start"></ion-icon>
       <ion-select label="Cines" [multiple]="true" [interfaceOptions]="selectConfiguration('Cines')">
-        <ion-select-option value="Hoyts">Hoyts Abasto</ion-select-option>
-        <ion-select-option value="Cinemark">Cinemark Palermo </ion-select-option>
-        <ion-select-option value="Multiplex">Multiplex La Valle</ion-select-option>
+        <ion-select-option *ngFor="let theater of theaters$ | async; let i = index" value="{{i}}">{{theater.description}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="ticket-outline" slot="start"></ion-icon>
       <ion-select label="Género" [multiple]="true" [interfaceOptions]="selectConfiguration('Géneros')">
-        <ion-select-option value="action">Accion</ion-select-option>
-        <ion-select-option value="drama">Drama</ion-select-option>
-        <ion-select-option value="Romance">Romance</ion-select-option>
+        <ion-select-option *ngFor="let genre of genres$ | async; let i = index" value="{{i}}">{{genre.description}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
