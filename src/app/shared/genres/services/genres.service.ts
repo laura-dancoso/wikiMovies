@@ -1,19 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { GENRES } from 'src/app/mocks/getGenres';
+import { Genre } from '../models/genre.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GenresService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
   /**
    *
    * @returns Devuelve la lista de géneros de peliculas disponibles
-   * La implementación de este método se modificará cuando tengamos disponible la API
    */
   getGenres(){
-    return of(GENRES);
+    return this.httpClient.get<Genre[]>(`${environment.api}/genres`);
   }
 }
