@@ -27,5 +27,8 @@ export class MoviesService {
     return this.httpClient.get<MovieDetail>(`${environment.api}/movies/${id}`).pipe(shareReplay()
     )
   }
+  getListMovie( ){
+
+  }
 
 }

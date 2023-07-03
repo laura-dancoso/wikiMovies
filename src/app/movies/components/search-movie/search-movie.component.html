@@ -1,14 +1,29 @@
-<ion-header  >
-  <ion-toolbar>
+<ion-header no-border >
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button color="primary"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-searchbar> </ion-searchbar>
+  <ion-searchbar how-clear-button="focus"> </ion-searchbar>
+  
 </ion-header>
-<ion-content>
-
-
+<ion-content [fullscreen]="true" >
+<!-- <ion-card [button]="true" routerLink="{{searchM.id}}">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="{{searchM.title}}" [src]="searchM.imageUrl" />
+          </ion-thumbnail>
+          <ion-label >
+            <h3>{{searchM.title | uppercase}}</h3>
+            <p> {{getGenres(searchM.genres)}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>  -->
+ 
 </ion-content>
 
 
