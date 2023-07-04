@@ -36,7 +36,9 @@ export class SearchMovieComponent  implements OnInit {
       }
     );
   }
-    
+  getGenres(genres: Genre[]){
+    return genres.map(genres=> genres.description).join(', ');
+  } 
   buscarPeliculas(titulo: string, generoId: string) {
     this.loading = false;
     this.moviesService.getSearchMovie(titulo, generoId).subscribe(
