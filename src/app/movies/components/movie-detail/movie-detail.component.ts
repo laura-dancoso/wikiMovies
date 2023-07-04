@@ -33,5 +33,5 @@ export class MovieDetailComponent  implements OnInit {
 
   getGenres(genres: Genre[]){
     return genres.map(genres=> genres.description).join(', ');
-  }
+  } 
 }

@@ -4,7 +4,8 @@ import { Theater } from "../../shared/theaters/models/theater.model";
 export interface Movie {
     id: number,
     title: string,
-    imageUrl: string
+    imageUrl: string,
+    genres: Genre[],
 }
 
 export interface MovieDetail extends Movie {
