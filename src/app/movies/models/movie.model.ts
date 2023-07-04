@@ -12,11 +12,18 @@ export interface MovieDetail extends Movie {
     genres: Genre[],
     description: string,
     duration: number,
-    showtimes: {
-        theater: Theater,
-        dates: {
-            date: Date | string,
-            times: string[]
-        }[]
+    showtimes: Showtime[]
+}
+
+export interface Showtime{
+    theater: Theater,
+    dates: {
+        date: Date | string,
+        times: string[]
     }[]
+}
+
+export interface ShowtimeByDate{
+    theater: Theater,
+    times: string[]
 }
