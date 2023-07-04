@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieDetail } from '../../models/movie.model';
+import { MovieDetail, Showtime, ShowtimeByDate } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Genre } from 'src/app/shared/genres/models/genre.model';
+import { Dictionary, entries, flatten, groupBy, values } from 'lodash';
 
 @Component({
   selector: 'movie-detail',
@@ -34,4 +35,15 @@ export class MovieDetailComponent  implements OnInit {
   getGenres(genres: Genre[]){
     return genres.map(genres=> genres.description).join(', ');
   } 
+
+
+
+  getShowtimesDetail(showtimes: Showtime[]): Dictionary<ShowtimeByDate[]>{
+    /**
+     * se agrupan los showtimes por fecha, y despues por teatro
+     */
+    const showtimesByDate = groupBy(flatten(showtimes.map(st=>st.dates.map(d=> ({...d, theater: st.theater})))), 'date')
+    return showtimesByDate;
+  }
+
 }
