@@ -18,6 +18,10 @@ export class MoviesPage {
   constructor( private navCtrl: NavController ){}
   goToSearchPage(){
     this.navCtrl.navigateForward('search-movie')
+    
+  }
+  goToFilterPage(){
+    this.navCtrl.navigateForward('filter')
   }
  
 

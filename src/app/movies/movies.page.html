@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" (click)="goToFilterPage()">
       <ion-button >
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
+        <ion-icon slot="icon-only" name="filter" ></ion-icon>
       </ion-button>
       <ion-button slot="end"  (click)="goToSearchPage()"> 
         <ion-icon  slot="icon-only" name="search-sharp"></ion-icon>
