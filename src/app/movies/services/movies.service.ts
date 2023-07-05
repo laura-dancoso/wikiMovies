@@ -27,5 +27,12 @@ export class MoviesService {
     return this.httpClient.get<MovieDetail>(`${environment.api}/movies/${id}`).pipe(shareReplay()
     )
   }
+  getSearchMovie(title?: string, genre?: string): Observable<Movie[]> {
+    let params = new HttpParams();
+    if(title) params = params.set('title', title);
+    if (genre) params = params.set('genres', genre);
+    return this.httpClient.get<Movie[]>(`${environment.api}/movies`, { params: params });
+  }
+  
 
 }

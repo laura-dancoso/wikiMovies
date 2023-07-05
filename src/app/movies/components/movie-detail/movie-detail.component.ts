@@ -34,7 +34,9 @@ export class MovieDetailComponent  implements OnInit {
 
   getGenres(genres: Genre[]){
     return genres.map(genres=> genres.description).join(', ');
-  }
+  } 
+
+
 
   getShowtimesDetail(showtimes: Showtime[]): Dictionary<ShowtimeByDate[]>{
     /**
@@ -43,4 +45,5 @@ export class MovieDetailComponent  implements OnInit {
     const showtimesByDate = groupBy(flatten(showtimes.map(st=>st.dates.map(d=> ({...d, theater: st.theater})))), 'date')
     return showtimesByDate;
   }
+
 }
