@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NameTabs } from '../enums/tabs-enum';
+import { NotificationsService } from './services/notifications.service';
 
 @Component({
   selector: 'notifications',
@@ -10,6 +11,8 @@ export class NotificationsPage {
 
   title = NameTabs.Notifications;
 
-  constructor() {}
+  constructor(private notificationsService: NotificationsService) {
+    console.log(this.notificationsService.token)
+  }
 
 }
