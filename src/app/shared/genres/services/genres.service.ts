@@ -16,4 +16,5 @@ export class GenresService {
   getGenres(){
     return this.httpClient.get<Genre[]>(`${environment.api}/genres`);
   }
+ 
 }
