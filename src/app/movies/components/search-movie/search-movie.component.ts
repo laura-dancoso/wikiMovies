@@ -59,9 +59,7 @@ export class SearchMovieComponent  implements OnInit {
       }
     );  
   }
-   /*  const title = (event.detail as any).value;
-    const genre='';
-    this.movieSearch = this.moviesService.getSearchMovie(title, genre); */
+   
   
 }
 

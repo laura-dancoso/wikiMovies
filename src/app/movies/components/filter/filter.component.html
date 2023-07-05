@@ -1,3 +1,24 @@
-<p>
-  filter works!
-</p>
+<ion-content>
+  <h1> Filtros </h1>
+  <ion-list>
+    <ion-item>
+      <ion-select  (ionChange)="handleChange($event)" placeholder="Seleccionar Generos" [multiple]="true">
+        <ion-select-option *ngFor="let g of genres" [value]="g.id">
+          {{ g.description }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    
+    <ion-button  (click)="dismiss()" fill="clear">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button  (click)="confirmChanges()" fill="clear">
+      confirmar cambios
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

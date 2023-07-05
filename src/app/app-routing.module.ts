@@ -17,7 +17,9 @@ const routes: Routes = [
   {
     path: 'filter',
     component: FilterComponent
-  }
+  },
+ 
+
 ];
 @NgModule({
   imports: [

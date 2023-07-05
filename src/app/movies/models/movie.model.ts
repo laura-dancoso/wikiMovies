@@ -1,5 +1,6 @@
+import { Theater } from './../../shared/theaters/models/theater.model';
 import { Genre } from "../../shared/genres/models/genre.model";
-import { Theater } from "../../shared/theaters/models/theater.model";
+
 
 export interface Movie {
     id: number,
@@ -28,3 +29,6 @@ export interface ShowtimeByDate{
     theater: Theater,
     times: string[]
 }
+ export interface Filter extends Movie{
+    theater: Theater
+} 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, shareReplay} from 'rxjs';
-import { Movie, MovieDetail } from '../models/movie.model';
+import { Filter, Movie, MovieDetail } from '../models/movie.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -33,6 +33,11 @@ export class MoviesService {
     if (genre) params = params.set('genres', genre);
     return this.httpClient.get<Movie[]>(`${environment.api}/movies`, { params: params });
   }
-  
+  getFilterMovie(theater?: string, genre?: string): Observable<Filter> {
+    let params = new HttpParams();
+    if(theater) params = params.set('theater', theater);
+    if (genre) params = params.set('genres', genre);
+    return this.httpClient.get<Filter>(`${environment.api}/movies`, { params: params });
+  }
 
 }
