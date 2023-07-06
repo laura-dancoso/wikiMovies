@@ -3,9 +3,8 @@
     <ion-toolbar>
       <ion-buttons slot ="end">
         <ion-button tappabe (click)="openFiltros()" slot="icon-only" >
-          <ion-icon name="filter"></ion-icon>
+          <ion-icon name="filter" color="{{filtrosAplicados ? 'primary' : ''}}"></ion-icon>
         </ion-button>
-  
         <ion-button (click)="goToSearchPage()"> 
           <ion-icon  slot="icon-only" name="search-sharp"></ion-icon>
         </ion-button>
@@ -22,7 +21,7 @@
         <ion-title size="large">{{title}}</ion-title>
       </ion-toolbar>
     </ion-header>
-    <movies-list (onSelectionChange)="onSelectionChange"></movies-list>
+    <movies-list></movies-list>
   </ion-content>
 
 
