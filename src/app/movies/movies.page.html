@@ -2,8 +2,8 @@
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot ="end">
-        <ion-button tappabe (click)="openFiltros()" slot="icon-only" >
-          <ion-icon name="filter" color="{{filtrosAplicados ? 'primary' : ''}}"></ion-icon>
+        <ion-button tappabe (click)="openFiltros()" >
+          <ion-icon slot="icon-only"  name="filter" color="{{filtrosAplicados ? 'primary' : ''}}"></ion-icon>
         </ion-button>
         <ion-button (click)="goToSearchPage()"> 
           <ion-icon  slot="icon-only" name="search-sharp"></ion-icon>
