@@ -1,4 +1,4 @@
-import { Genre } from './../shared/genres/models/genre.model';
+
 import { GenresService } from './../shared/genres/services/genres.service';
 import { Component, OnInit } from '@angular/core';
 import { NameTabs } from '../enums/tabs-enum';
@@ -17,7 +17,6 @@ import { FilterComponent } from './components/filter/filter.component';
 export class MoviesPage {
   
   title = NameTabs.Movies;
-/*   genres?: Genre[]; */ 
 
   constructor( private navCtrl: NavController, private modalCtrl: ModalController, private genresService: GenresService ){}
   goToSearchPage(){
@@ -32,12 +31,12 @@ export class MoviesPage {
   });
   await modal.present();
  }  
- ngOnInit() {
+  ngOnInit() {
 
 
-}
+  }
 
-onSelectionChange(eve:any){
-  console.log(eve)
-}
+  onSelectionChange(eve: any){
+    console.log(eve)
+  }
 }
