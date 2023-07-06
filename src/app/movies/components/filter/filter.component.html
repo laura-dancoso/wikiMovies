@@ -1,18 +1,29 @@
 
-<ion-header>   <ion-title color="primary">Filtros</ion-title> </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" fill="clear">
+        <ion-icon color="primary" slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="primary">Filtros</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-select [(ngModel)]="selectGenres" placeholder="Seleccionar Generos" [multiple]="true">
-        <ion-select-option *ngFor="let g of genres" [value]="g.id">
-          {{ g.description }}
+      <ion-icon name="film-outline" slot="start"></ion-icon>
+      <ion-select [(ngModel)]="selectTheaters" label="Cines" placeholder="Seleccionar" [multiple]="true">
+        <ion-select-option *ngFor="let t of theaters" [value]="t.id">
+          {{ t.description}}
         </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-select [(ngModel)]="selectTheaters" placeholder="Seleccionar Cines" [multiple]="true">
-        <ion-select-option *ngFor="let t of theaters" [value]="t.id">
-          {{ t.description}}
+      <ion-icon name="ticket-outline" slot="start"></ion-icon>
+      <ion-select [(ngModel)]="selectGenres" label="Géneros" placeholder="Seleccionar" [multiple]="true">
+        <ion-select-option *ngFor="let g of genres" [value]="g.id">
+          {{ g.description }}
         </ion-select-option>
       </ion-select>
     </ion-item>

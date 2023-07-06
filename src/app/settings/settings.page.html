@@ -30,7 +30,7 @@
     </ion-item>
     <ion-item>
       <ion-icon name="ticket-outline" slot="start"></ion-icon>
-      <ion-select [(ngModel)]="genresSelected" (ionChange)="setGenres($event)" label="Género" [multiple]="true" [interfaceOptions]="selectConfiguration('Géneros')">
+      <ion-select [(ngModel)]="genresSelected" (ionChange)="setGenres($event)" label="Géneros" [multiple]="true" [interfaceOptions]="selectConfiguration('Géneros')">
         <ion-select-option *ngFor="let genre of genres$ | async; let i = index" [value]="genre.id">{{genre.description}}</ion-select-option>
       </ion-select>
     </ion-item>
