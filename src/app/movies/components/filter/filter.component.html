@@ -1,0 +1,27 @@
+<ion-content>
+  <h1> Filtros </h1>
+  <ion-list>
+    <ion-item>
+      <ion-select [(ngModel)]="selectGenres" placeholder="Seleccionar Generos" [multiple]="true">
+        <ion-select-option *ngFor="let g of genres" [value]="g.id">
+          {{ g.description }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    
+    <ion-button  (click)="dismiss()" fill="clear">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button  (click)="confirmChanges()" fill="clear">
+      aplicar filtros
+    </ion-button>
+    <ion-button  (click)="clearGenresFilters()" fill="clear">
+      borrar filtros
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
