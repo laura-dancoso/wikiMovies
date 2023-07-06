@@ -1,9 +1,8 @@
-import { Genre } from './../shared/genres/models/genre.model';
-import { GenresService } from './../shared/genres/services/genres.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NameTabs } from '../enums/tabs-enum';
 import { IonModal, ModalController, NavController } from '@ionic/angular';
 import { FilterComponent } from './components/filter/filter.component';
+import { FiltersService } from './services/filters.service';
 
 @Component(
   {
@@ -12,32 +11,28 @@ import { FilterComponent } from './components/filter/filter.component';
     styleUrls: ['movies.page.scss']
   }
 
-  
 )
 export class MoviesPage {
-  
+
   title = NameTabs.Movies;
-/*   genres?: Genre[]; */ 
 
-  constructor( private navCtrl: NavController, private modalCtrl: ModalController, private genresService: GenresService ){}
-  goToSearchPage(){
-    this.navCtrl.navigateForward('search-movie')
-    
+  get filtrosAplicados() {
+    return (this.filterServices.genresId!! && this.filterServices.genresId.length > 0) || (this.filterServices.theatersId!! && this.filterServices.theatersId.length > 0);
   }
- 
-  async openFiltros(){
-  const modal= await this.modalCtrl.create({
-    component: FilterComponent,
-    
-  });
-  await modal.present();
- }  
- ngOnInit() {
+  
+  constructor(private navCtrl: NavController, private modalCtrl: ModalController, private filterServices: FiltersService) { }
+  
+  goToSearchPage() {
+    this.navCtrl.navigateForward('search-movie')
+  }
 
+  async openFiltros() {
+    const modal = await this.modalCtrl.create({
+      component: FilterComponent,
+    });
+    await modal.present();
+  }
 
-}
-
-onSelectionChange(eve:any){
-  console.log(eve)
-}
+  ngOnInit() {
+  }
 }
