@@ -1,24 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button >
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
-      </ion-button>
-      <ion-button slot="end"  (click)="goToSearchPage()"> 
-        <ion-icon  slot="icon-only" name="search-sharp"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title color="primary">
-      {{title}} 
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">{{title}}</ion-title>
+      <ion-buttons slot ="end">
+        <ion-button tappabe (click)="openFiltros()" >
+          <ion-icon slot="icon-only"  name="filter" color="{{filtrosAplicados ? 'primary' : ''}}"></ion-icon>
+        </ion-button>
+        <ion-button (click)="goToSearchPage()"> 
+          <ion-icon  slot="icon-only" name="search-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+     
+      <ion-title color="primary">
+        {{title}} 
+      </ion-title>
     </ion-toolbar>
   </ion-header>
-  <movies-list></movies-list>
-</ion-content>
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">{{title}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <movies-list></movies-list>
+  </ion-content>
+
+
