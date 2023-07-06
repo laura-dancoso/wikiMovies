@@ -1,15 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title color="primary">
       {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{title}}</ion-title>
+      <ion-title size="large" color="primary">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ng-container>
+    <ion-card *ngFor="let notif of notifications" button="true" routerLink="/peliculas" [queryParams]="{notifications: true}">
+      <ion-card-header>
+        <ion-card-subtitle color="secondary">{{notif.title}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{notif.subtitle}}
+        <p class="ion-text-end "><i>{{notif.date | date: 'short'}}</i></p>
+      </ion-card-content>
+    </ion-card>
+    <div class="ion-padding" *ngIf="!notifications">
+      Aún no tiene notificaciones
+    </div>
+  </ng-container>
 </ion-content>

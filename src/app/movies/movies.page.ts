@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NameTabs } from '../enums/tabs-enum';
-import { IonModal, ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { FilterComponent } from './components/filter/filter.component';
 import { FiltersService } from './services/filters.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component(
   {
@@ -20,7 +21,8 @@ export class MoviesPage {
     return (this.filterServices.genresId!! && this.filterServices.genresId.length > 0) || (this.filterServices.theatersId!! && this.filterServices.theatersId.length > 0);
   }
   
-  constructor(private navCtrl: NavController, private modalCtrl: ModalController, private filterServices: FiltersService) { }
+  constructor(private navCtrl: NavController, private modalCtrl: ModalController, private filterServices: FiltersService,private route: ActivatedRoute) { 
+  }
   
   goToSearchPage() {
     this.navCtrl.navigateForward('search-movie')

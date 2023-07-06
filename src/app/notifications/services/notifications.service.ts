@@ -1,43 +1,49 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalNotifications } from '@capacitor/local-notifications';
 import {
   ActionPerformed,
-  PushNotificationSchema,
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
 import { Platform } from '@ionic/angular';
 import { RouteTabs } from 'src/app/enums/tabs-enum';
+import { StorageService } from '../../shared/storage.service';
+import { Notification, defaultNotif } from '../models/notification.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
   token: string = '';
+  notificationEmitedEvent = new EventEmitter<any>();
 
-  constructor(private platform: Platform, private router: Router) { }
-
+  constructor(private platform: Platform, private router: Router, private storageService: StorageService) { }
+  
   
   getDeliveredNotifications = async () => {
     const notificationList = await PushNotifications.getDeliveredNotifications();
     console.log('delivered notifications', notificationList);
   }
-
+  
   initiateNotifications(){
+    this.addListeners();
     if(this.platform.is('capacitor')){
-      PushNotifications.requestPermissions().then(result => {
-        console.log('PushNotifications.requestPermissions()')
-        if (result.receive === 'granted') {
+      PushNotifications.checkPermissions().then(result=>{
+        if(result.receive === 'granted')
+        {
           PushNotifications.register();
-          this.addListeners();
-        } else {
-
-          throw new Error('User denied permissions!');
+        }else{
+          PushNotifications.requestPermissions().then(result => {
+            console.log('PushNotifications.requestPermissions()')
+            if (result.receive === 'granted') {
+              PushNotifications.register();
+            } else {
+              throw new Error('User denied permissions!');
+            }
+          });
         }
-      });
-      
-    }
+      })
+  }
   }
 
   addListeners(){
@@ -50,34 +56,26 @@ export class NotificationsService {
       console.log('Error on registration: ' + JSON.stringify(error));
     });
 
-    //primer plano
-    PushNotifications.addListener(
-      'pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        console.log('Push received: ' + JSON.stringify(notification));
-        LocalNotifications.schedule({
-          notifications:[
-            {
-              title: notification.title!,
-              body: notification.body!,
-              id: 1,
-              extra: { data: notification.data}
-            }
-          ]
-        })
-      },
-    );
-
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
         console.log('Push action performed in second plane: ' + JSON.stringify(notification));
-        this.router.navigate([`/${RouteTabs.Movies}`]);
+        let notif: Notification[] = [];
+        this.storageService.get('notifications')?.then(notifs=>{
+          notif = notifs ?? [];
+          notif.push({title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
+          this.storageService.set('notifications', notif);
+          this.notificationEmitedEvent.emit();
+          this.router.navigate([`/${RouteTabs.Notifications}`]);
+        });
       },
     );
-    LocalNotifications.addListener('localNotificationReceived', notification=>{
-      console.log('Push action performed: ' + JSON.stringify(notification));
-      this.router.navigate([`/${RouteTabs.Movies}/2`]);
-    })
+    PushNotifications.addListener(
+      'pushNotificationReceived',
+      (notification) => {
+        console.log('Push pushNotificationReceived in second plane: ' + JSON.stringify(notification));
+        this.router.navigate([`/${RouteTabs.Movies}`]);
+      },
+    );  
   }
 }

@@ -13,11 +13,12 @@ import { FilterComponent } from './movies/components/filter/filter.component';
 import { FormsModule } from '@angular/forms';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { IonicStorageModule } from '@ionic/storage-angular';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [AppComponent, SearchMovieComponent, FilterComponent ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule,IonicStorageModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   {
     provide: LOCALE_ID,
