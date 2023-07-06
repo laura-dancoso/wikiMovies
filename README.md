@@ -9,3 +9,6 @@ orientados a la gestión y apoyo a las decisiones del IFTS N°11
 [wikiMoviesApi](https://github.com/laura-dancoso/wikiMoviesApi#readme)
 ### 📌Link a la API utilizada en este proyecto:
 [wiki-movies-api.vercel.app](https://wiki-movies-api.vercel.app/api)
+
+### 📌Link para descargar la app (apk):
+[apk](https://drive.google.com/file/d/1-egyp92bczabSY3PpNiQYNLBaiNazbmR/view?usp=sharing)
