@@ -15,7 +15,7 @@
       <ion-title size="large" color="primary">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ng-container>
+  <ng-container *ngIf="notifications.length>0; else sinNotif">
     <ion-card *ngFor="let notif of notifications" button="true" routerLink="/peliculas" [queryParams]="{notifications: true}">
       <ion-card-header>
         <ion-card-subtitle color="secondary">{{notif.title}}
@@ -26,8 +26,12 @@
         <p class="ion-text-end "><i>{{notif.date | date: 'short'}}</i></p>
       </ion-card-content>
     </ion-card>
-    <div class="ion-padding" *ngIf="!notifications">
-      Aún no tiene notificaciones
-    </div>
   </ng-container>
+  <ng-template #sinNotif>
+    <ng-container>
+      <div class="ion-padding">
+        Aún no tiene notificaciones
+      </div>
+    </ng-container>
+  </ng-template>
 </ion-content>
