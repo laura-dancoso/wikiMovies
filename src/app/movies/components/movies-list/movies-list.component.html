@@ -3,7 +3,7 @@
 </ion-refresher>
 <div class="ion-padding" *ngIf="filtrosAplicados" >
   <ion-chip (click)="chipClicked.emit()" color="primary" *ngFor="let id of  selectGenres" > {{getGenresDescription(id)}}</ion-chip> 
-  <ion-chip (click)="chipClicked.emit()" color="secondary" *ngFor="let id of  selectTheaters" > {{ getTheatersDescription(id)}}</ion-chip> 
+  <ion-chip (click)="chipClicked.emit()" color="secondary" *ngFor="let id of  selectTheaters" > {{ getTheatersDescription(id)}}</ion-chip>
 </div>
 <ng-container *ngIf="movies$ | async as movies; else loading" >
   <ion-grid>
