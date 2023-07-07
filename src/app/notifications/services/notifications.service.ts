@@ -55,10 +55,17 @@ export class NotificationsService {
         let notif: Notification[] = [];
         this.storageService.get('notifications')?.then(notifs=>{
           notif = notifs ?? [];
-          notif.push({ id: notification.notification.id ?? `${defaultNotif.id}-${new Date().getMilliseconds}`, readed: false, title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
-          this.storageService.set('notifications', notif);
-          this.notificationEmitedEvent.emit();
-          this.router.navigate([`/${RouteTabs.Notifications}`]);
+          notif.push({ 
+            id: notification.notification.id ?? `${defaultNotif.id}-${new Date().getMilliseconds}`, 
+            readed: false, 
+            title: notification.notification?.data?.title ?? defaultNotif.title,
+            subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle,
+            date: notification.notification?.data?.date ?? new Date()})
+          this.storageService.set('notifications', notif)?.then(()=>{
+            this.notificationEmitedEvent.emit();
+            this.router.navigate([`/${RouteTabs.Notifications}`]);
+          }
+          );
         });
       },
     );
