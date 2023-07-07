@@ -10,9 +10,9 @@
     <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher> 
-    <ion-grid>
+    <ion-grid class="ion-padding-horizontal">
       <ion-row>
-        <ion-col>
+        <ion-col class="ion-no-padding ion-padding-top ion-padding-end">
           <div class="ion-text-start">
             <img class="imgMovie" alt="{{movie.title}}" [src]="movie.imageUrl"/> 
           </div>
@@ -24,7 +24,6 @@
               <p> DURACIÓN <br> 
                 {{movie.duration}} minutos
               </p>
-
             </div>
           </div>
         </ion-col>
@@ -42,6 +41,24 @@
         </div> 
       </ion-row>
     </ion-grid>
+    <ion-accordion-group [multiple]="true" value="0">
+      <ion-accordion *ngFor="let acc of getShowtimesDetail(movie.showtimes) | keyvalue; let i = index" [value]="i">
+        <ion-item slot="header" color="light">
+          <ion-label>{{acc.key | date: 'EEE d \'de\' MMMM' }}</ion-label>
+        </ion-item>
+        <div slot="content">
+          <ion-card *ngFor="let cine of acc.value">
+            <ion-card-header>
+              <ion-card-subtitle><a href="{{cine.theater.url}}">{{cine.theater.description}}</a>
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-chip *ngFor="let time of cine.times">{{time}}</ion-chip>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
   </ion-content>
 </ng-container>
  
