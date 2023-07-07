@@ -15,23 +15,32 @@
       <ion-title size="large" color="primary">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ng-container *ngIf="notifications.length>0; else sinNotif">
-    <ion-card *ngFor="let notif of notifications" button="true" routerLink="/peliculas" [queryParams]="{notifications: true}">
-      <ion-card-header>
-        <ion-card-subtitle color="secondary">{{notif.title}}
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        {{notif.subtitle}}
-        <p class="ion-text-end "><i>{{notif.date | date: 'short'}}</i></p>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
-  <ng-template #sinNotif>
-    <ng-container>
-      <div class="ion-padding">
-        Aún no tiene notificaciones
-      </div>
-    </ng-container>
-  </ng-template>
+  <ion-list *ngIf="notifications.length>0; else sinNotif">
+    <ion-item-sliding *ngFor="let notif of notifications">
+      <ion-item>
+        <ion-card  button="true" (click)="markAsReaded(notif.id)" routerLink="/peliculas" [queryParams]="{notifications: true}">
+          <ion-card-header>
+            <ion-card-subtitle color="secondary">{{notif.title}}
+            </ion-card-subtitle>
+            <ion-icon *ngIf="!notif.readed" name="ellipse" color="primary"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            {{notif.subtitle}}
+            <p class="ion-text-end "><i>{{notif.date | date: 'short'}}</i></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="delete(notif.id)">eliminar</ion-item-option>
+        <ion-item-option *ngIf="!notif.readed" (click)="markAsReaded(notif.id)">marcar como leída</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+    <ng-template #sinNotif>
+      <ng-container>
+        <div class="ion-padding">
+          Aún no tiene notificaciones
+        </div>
+      </ng-container>
+    </ng-template>
 </ion-content>

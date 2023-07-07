@@ -1,0 +1,26 @@
+ion-card-header{
+    flex-direction: row;
+}
+ion-list{
+    background-color: transparent;
+}
+
+ion-item-sliding{
+    background-color: transparent;
+}
+
+ion-item::part(native) {
+    background-color: transparent;
+}
+
+ion-item{
+    --border-color: transparent;
+}
+
+ion-item-options{
+   align-items: center;
+}
+
+ion-item-option{
+    height: 80%;
+}

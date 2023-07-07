@@ -17,8 +17,9 @@ export class NotificationsService {
   token: string = '';
   notificationEmitedEvent = new EventEmitter<any>();
 
-  constructor(private platform: Platform, private router: Router, private storageService: StorageService) { }
-  
+  constructor(private platform: Platform, private router: Router, private storageService: StorageService) { 
+  }
+
   initiateNotifications(){
     if(this.platform.is('capacitor')){
       this.addListeners();
@@ -54,12 +55,39 @@ export class NotificationsService {
         let notif: Notification[] = [];
         this.storageService.get('notifications')?.then(notifs=>{
           notif = notifs ?? [];
-          notif.push({title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
+          notif.push({ id: notification.notification.id ?? `${defaultNotif.id}-${new Date().getMilliseconds}`, readed: false, title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
           this.storageService.set('notifications', notif);
           this.notificationEmitedEvent.emit();
           this.router.navigate([`/${RouteTabs.Notifications}`]);
         });
       },
     );
+  }
+
+  getNotifications(){
+    return this.storageService.get('notifications');
+  }
+
+  deleteNotification(id: string | number){
+    let notif: Notification[] = [];
+    this.storageService.get('notifications')?.then(notifs=>{
+      notif = notifs?.filter((n: Notification)=>n.id != id) ?? [];
+      this.storageService.set('notifications', notif)?.then(()=>
+      this.notificationEmitedEvent.emit()
+      );
+    });
+  }
+
+  markAsReaded(id: string | number){
+    let notif: Notification[] = [];
+    this.storageService.get('notifications')?.then(notifs=>{
+      notif = notifs?.map((n: Notification)=>{
+        if(n.id == id) n.readed = true;
+        return n;
+      }) ?? [];
+      this.storageService.set('notifications', notif)?.then(()=>
+      this.notificationEmitedEvent.emit()
+      );
+    });
   }
 }
