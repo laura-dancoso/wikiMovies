@@ -19,26 +19,19 @@ export class NotificationsService {
 
   constructor(private platform: Platform, private router: Router, private storageService: StorageService) { }
   
-  
-  getDeliveredNotifications = async () => {
-    const notificationList = await PushNotifications.getDeliveredNotifications();
-    console.log('delivered notifications', notificationList);
-  }
-  
   initiateNotifications(){
-    this.addListeners();
     if(this.platform.is('capacitor')){
+      this.addListeners();
       PushNotifications.checkPermissions().then(result=>{
         if(result.receive === 'granted')
         {
           PushNotifications.register();
         }else{
           PushNotifications.requestPermissions().then(result => {
-            console.log('PushNotifications.requestPermissions()')
             if (result.receive === 'granted') {
               PushNotifications.register();
             } else {
-              throw new Error('User denied permissions!');
+              console.error('User denied permissions!');
             }
           });
         }
@@ -49,17 +42,15 @@ export class NotificationsService {
   addListeners(){
     PushNotifications.addListener('registration', (token: Token) => {
       this.token = token.value;
-      console.log('Push registration success, token: ' + token.value);
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {
-      console.log('Error on registration: ' + JSON.stringify(error));
+      console.error('Error on registration: ' + JSON.stringify(error));
     });
 
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        console.log('Push action performed in second plane: ' + JSON.stringify(notification));
         let notif: Notification[] = [];
         this.storageService.get('notifications')?.then(notifs=>{
           notif = notifs ?? [];
@@ -70,12 +61,5 @@ export class NotificationsService {
         });
       },
     );
-    PushNotifications.addListener(
-      'pushNotificationReceived',
-      (notification) => {
-        console.log('Push pushNotificationReceived in second plane: ' + JSON.stringify(notification));
-        this.router.navigate([`/${RouteTabs.Movies}`]);
-      },
-    );  
   }
 }

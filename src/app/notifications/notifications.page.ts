@@ -20,7 +20,7 @@ export class NotificationsPage {
   }
 
   getNotifications(){
-    this.storageService.get('notifications')?.then(notifs=> this.notifications = notifs.sort((a:Notification,b:Notification)=> (a.date?.getTime() ?? 0) -( b.date?.getTime() ?? 0)));
+    this.storageService.get('notifications')?.then(notifs=> this.notifications = notifs?.sort((a:Notification,b:Notification)=> (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0)) ?? []);
   }
 
   handleRefresh(event: any) {
