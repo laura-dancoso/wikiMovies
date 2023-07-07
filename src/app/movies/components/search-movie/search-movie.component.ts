@@ -38,7 +38,8 @@ export class SearchMovieComponent  implements OnInit {
   }
   getGenres(genres: Genre[]){
     return genres.map(genres=> genres.description).join(', ');
-  } 
+  }
+
   buscarPeliculas(titulo: string, generoId: string) {
     this.loading = false;
     this.moviesService.getSearchMovie(titulo, generoId).subscribe(
@@ -50,7 +51,6 @@ export class SearchMovieComponent  implements OnInit {
 
           return tituloIncluido && generoIncluido;
         });
-
         this.movieSearch = of(filteredMovies);
         this.loading = false;
       },

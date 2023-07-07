@@ -15,23 +15,23 @@
   <ion-list class="ion-no-padding">
     <ion-item>
       <ion-icon class="notifications" name="notifications-outline" slot="start"></ion-icon>
-      <ion-select label="Notificaciones">
-        <ion-select-option value="week">Cada 7 días</ion-select-option>
-        <ion-select-option value="fortnicht">Cada 15 días </ion-select-option>
-        <ion-select-option value="month">1 vez por mes</ion-select-option>
-        <ion-select-option value="month">Nunca</ion-select-option>
+      <ion-select [(ngModel)]="notifSelected" label="Notificaciones" (ionChange)="setNotificationsSettings($event)">
+        <ion-select-option value="7">Cada 7 días</ion-select-option>
+        <ion-select-option value="15">Cada 15 días </ion-select-option>
+        <ion-select-option value="30">1 vez por mes</ion-select-option>
+        <ion-select-option value="0">Nunca</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="film-outline" slot="start"></ion-icon>
-      <ion-select label="Cines" [multiple]="true" [interfaceOptions]="selectConfiguration('Cines')">
-        <ion-select-option *ngFor="let theater of theaters$ | async; let i = index" value="{{i}}">{{theater.description}}</ion-select-option>
+      <ion-select [(ngModel)]="theatersSelected" (ionChange)="setTheaters($event)" label="Cines" [multiple]="true" [interfaceOptions]="selectConfiguration('Cines')">
+        <ion-select-option *ngFor="let theater of theaters$ | async; let i = index" [value]="theater.id">{{theater.description}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="ticket-outline" slot="start"></ion-icon>
-      <ion-select label="Género" [multiple]="true" [interfaceOptions]="selectConfiguration('Géneros')">
-        <ion-select-option *ngFor="let genre of genres$ | async; let i = index" value="{{i}}">{{genre.description}}</ion-select-option>
+      <ion-select [(ngModel)]="genresSelected" (ionChange)="setGenres($event)" label="Géneros" [multiple]="true" [interfaceOptions]="selectConfiguration('Géneros')">
+        <ion-select-option *ngFor="let genre of genres$ | async; let i = index" [value]="genre.id">{{genre.description}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>

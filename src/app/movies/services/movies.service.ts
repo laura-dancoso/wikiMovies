@@ -28,7 +28,7 @@ export class MoviesService {
     );
     return this.httpClient.get<Movie[]>(`${environment.api}/movies`, { params: params }).pipe(shareReplay());
   }
-
+  
   getMovie(id: number): Observable<MovieDetail> {
     return this.httpClient.get<MovieDetail>(`${environment.api}/movies/${id}`).pipe(shareReplay()
     )

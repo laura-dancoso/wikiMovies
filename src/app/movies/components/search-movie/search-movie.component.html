@@ -3,24 +3,29 @@
     <ion-buttons slot="start">
       <ion-back-button color="primary"></ion-back-button>
     </ion-buttons>
+    <ion-searchbar placeholder="Buscar película" line="none" show-clear-button="focus" [(ngModel)]="searchText" (ionInput)="buscarPeliculas(searchText, '')"></ion-searchbar> 
   </ion-toolbar>
-  <ion-searchbar line="none" show-clear-button="focus" [(ngModel)]="searchText" (ionInput)="buscarPeliculas(searchText, '')"></ion-searchbar> 
 </ion-header>
 <ion-content [fullscreen]="true">
-  <div *ngIf="!loading ">  
+  <div *ngIf="!loading ">
     <ion-card >
       <ion-card-content>
-        <ion-list>
-          <ion-item [button]="true" *ngFor="let movie of movieSearch | async" routerLink="/peliculas/{{movie.id}}">
-            <ion-thumbnail slot="start">
-              <img alt="{{movie.title}}" [src]="movie.imageUrl" />
-            </ion-thumbnail>
-            <ion-label >
-              <h3>{{movie.title | uppercase}}</h3>
-              <p> {{getGenres(movie.genres)}}</p>
-            </ion-label> 
-          </ion-item>
-        </ion-list>
+        <ion-list  *ngIf="(movieSearch | async) as moviesFiltered">
+          <ng-container *ngIf="moviesFiltered.length>0; else sinDatos">
+            <ion-item [button]="true" *ngFor="let movie of moviesFiltered" routerLink="/peliculas/{{movie.id}}">
+              <ion-thumbnail slot="start">
+                <img alt="{{movie.title}}" [src]="movie.imageUrl" />
+              </ion-thumbnail>
+              <ion-label >
+                <h3>{{movie.title | uppercase}}</h3>
+                <p> {{getGenres(movie.genres)}}</p>
+              </ion-label> 
+            </ion-item>
+          </ng-container>
+          <ng-template #sinDatos>
+              No se encontraron resultados para su búsqueda
+          </ng-template>
+          </ion-list>
       </ion-card-content>
     </ion-card> 
   </div>
