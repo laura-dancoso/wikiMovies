@@ -11,4 +11,4 @@ orientados a la gestión y apoyo a las decisiones del IFTS N°11
 [wiki-movies-api.vercel.app](https://wiki-movies-api.vercel.app/api)
 
 ### 📌Link para descargar la app (apk):
-[apk](https://drive.google.com/file/d/1-egyp92bczabSY3PpNiQYNLBaiNazbmR/view?usp=sharing)
+[apk](https://drive.google.com/file/d/1oFylnvcPp4A8ecKEgkDrcFB4UvX27OeQ/view?usp=sharing)
