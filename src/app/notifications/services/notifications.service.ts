@@ -17,28 +17,22 @@ export class NotificationsService {
   token: string = '';
   notificationEmitedEvent = new EventEmitter<any>();
 
-  constructor(private platform: Platform, private router: Router, private storageService: StorageService) { }
-  
-  
-  getDeliveredNotifications = async () => {
-    const notificationList = await PushNotifications.getDeliveredNotifications();
-    console.log('delivered notifications', notificationList);
+  constructor(private platform: Platform, private router: Router, private storageService: StorageService) { 
   }
-  
+
   initiateNotifications(){
-    this.addListeners();
     if(this.platform.is('capacitor')){
+      this.addListeners();
       PushNotifications.checkPermissions().then(result=>{
         if(result.receive === 'granted')
         {
           PushNotifications.register();
         }else{
           PushNotifications.requestPermissions().then(result => {
-            console.log('PushNotifications.requestPermissions()')
             if (result.receive === 'granted') {
               PushNotifications.register();
             } else {
-              throw new Error('User denied permissions!');
+              console.error('User denied permissions!');
             }
           });
         }
@@ -49,33 +43,51 @@ export class NotificationsService {
   addListeners(){
     PushNotifications.addListener('registration', (token: Token) => {
       this.token = token.value;
-      console.log('Push registration success, token: ' + token.value);
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {
-      console.log('Error on registration: ' + JSON.stringify(error));
+      console.error('Error on registration: ' + JSON.stringify(error));
     });
 
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        console.log('Push action performed in second plane: ' + JSON.stringify(notification));
         let notif: Notification[] = [];
         this.storageService.get('notifications')?.then(notifs=>{
           notif = notifs ?? [];
-          notif.push({title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
+          notif.push({ id: notification.notification.id ?? `${defaultNotif.id}-${new Date().getMilliseconds}`, readed: false, title: notification.notification?.data?.title ?? defaultNotif.title, subtitle: notification.notification?.data?.subtitle ?? defaultNotif.subtitle, date: notification.notification?.data?.date ?? new Date()})
           this.storageService.set('notifications', notif);
           this.notificationEmitedEvent.emit();
           this.router.navigate([`/${RouteTabs.Notifications}`]);
         });
       },
     );
-    PushNotifications.addListener(
-      'pushNotificationReceived',
-      (notification) => {
-        console.log('Push pushNotificationReceived in second plane: ' + JSON.stringify(notification));
-        this.router.navigate([`/${RouteTabs.Movies}`]);
-      },
-    );  
+  }
+
+  getNotifications(){
+    return this.storageService.get('notifications');
+  }
+
+  deleteNotification(id: string | number){
+    let notif: Notification[] = [];
+    this.storageService.get('notifications')?.then(notifs=>{
+      notif = notifs?.filter((n: Notification)=>n.id != id) ?? [];
+      this.storageService.set('notifications', notif)?.then(()=>
+      this.notificationEmitedEvent.emit()
+      );
+    });
+  }
+
+  markAsReaded(id: string | number){
+    let notif: Notification[] = [];
+    this.storageService.get('notifications')?.then(notifs=>{
+      notif = notifs?.map((n: Notification)=>{
+        if(n.id == id) n.readed = true;
+        return n;
+      }) ?? [];
+      this.storageService.set('notifications', notif)?.then(()=>
+      this.notificationEmitedEvent.emit()
+      );
+    });
   }
 }

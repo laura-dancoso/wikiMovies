@@ -14,17 +14,25 @@ export class NotificationsPage {
   title = NameTabs.Notifications;
   notifications: Notification[] = [];
 
-  constructor(private storageService: StorageService, private notificationsService: NotificationsService) {
+  constructor(private notificationsService: NotificationsService) {
     this.getNotifications();
-    this.notificationsService.notificationEmitedEvent.subscribe(()=>this.getNotifications());
+    this.notificationsService.notificationEmitedEvent.subscribe(()=> this.getNotifications());
   }
 
   getNotifications(){
-    this.storageService.get('notifications')?.then(notifs=> this.notifications = notifs.sort((a:Notification,b:Notification)=> (a.date?.getTime() ?? 0) -( b.date?.getTime() ?? 0)));
+    this.notificationsService.getNotifications()?.then(notifs=> this.notifications = notifs?.sort((a:Notification,b:Notification)=> (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0)) ?? []);
   }
 
   handleRefresh(event: any) {
     this.getNotifications();
     event.target.complete();
+  }
+
+  markAsReaded(id: number | string){
+    this.notificationsService.markAsReaded(id);
+  }
+
+  delete(id: number | string){
+    this.notificationsService.deleteNotification(id);
   }
 }

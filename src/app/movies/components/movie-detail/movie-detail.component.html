@@ -9,19 +9,19 @@
   <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
-    </ion-refresher> 
+    </ion-refresher>
     <ion-grid class="ion-padding-horizontal">
       <ion-row>
         <ion-col class="ion-no-padding ion-padding-top ion-padding-end">
           <div class="ion-text-start">
-            <img class="imgMovie" alt="{{movie.title}}" [src]="movie.imageUrl"/> 
+            <img class="imgMovie" alt="{{movie.title}}" [src]="movie.imageUrl" />
           </div>
         </ion-col>
         <ion-col>
-          <div class="ion-text-wrap"> 
+          <div class="ion-text-wrap">
             <h2>{{movie.title | uppercase}}</h2>
-            <div class="durationMovie" >
-              <p> DURACIÓN <br> 
+            <div class="durationMovie">
+              <p>DURACIÓN<br>
                 {{movie.duration}} minutos
               </p>
             </div>
@@ -30,15 +30,15 @@
       </ion-row>
       <ion-row>
         <div class="ion-text-justify">
-          <h3> GÉNEROS </h3>
+          <h3>GÉNEROS</h3>
           <p> {{getGenres(movie.genres)}} </p>
         </div>
       </ion-row>
       <ion-row>
         <div class="ion-text-justify">
-          <h3> DESCRIPCIÓN  </h3>
+          <h3>DESCRIPCIÓN</h3>
           <p>{{movie.description}}</p>
-        </div> 
+        </div>
       </ion-row>
     </ion-grid>
     <ion-accordion-group [multiple]="true" value="0">
@@ -61,4 +61,3 @@
     </ion-accordion-group>
   </ion-content>
 </ng-container>
- 
