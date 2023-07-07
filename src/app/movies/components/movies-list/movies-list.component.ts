@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
-import { FiltersService } from '../../services/filters.service';
+
 import { Genre } from 'src/app/shared/genres/models/genre.model';
 import { GenresService } from 'src/app/shared/genres/services/genres.service';
 import { Theater } from 'src/app/shared/theaters/models/theater.model';
 import { TheatersService } from 'src/app/shared/theaters/services/theaters.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { FiltersService } from '../../services/filters.service';
 import { StorageService } from 'src/app/shared/storage.service';
 
 @Component({
@@ -93,6 +95,10 @@ export class MoviesListComponent implements OnInit {
   {
     return this.theaters?.find(t=>t.id == id)
     ?.description
+  }
+  close(cambios:any[] |null){
+
+    this.filtersService.filtersChange.emit({genresId: this.selectGenres!, theatersIds: this.selectTheaters!});
   }
 
 }

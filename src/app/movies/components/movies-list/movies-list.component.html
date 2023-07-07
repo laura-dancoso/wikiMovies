@@ -2,7 +2,7 @@
       <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 <div class="ion-padding" *ngIf="filtrosAplicados" >
-  <ion-chip color="primary" *ngFor="let id of  selectGenres" > {{getGenresDescription(id)}}</ion-chip> 
+  <ion-chip  color="primary" *ngFor="let id of  selectGenres" > {{getGenresDescription(id)}}<ion-icon  name="close"></ion-icon></ion-chip> 
   <ion-chip color="secondary" *ngFor="let id of  selectTheaters" > {{ getTheatersDescription(id)}}</ion-chip> 
   
 </div>
