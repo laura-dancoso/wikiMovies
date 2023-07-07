@@ -1,6 +1,11 @@
 <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
+<div class="ion-padding" *ngIf="filtrosAplicados" >
+  <ion-chip color="primary" *ngFor="let id of  selectGenres" > {{getGenresDescription(id)}}</ion-chip> 
+  <ion-chip color="secondary" *ngFor="let id of  selectTheaters" > {{ getTheatersDescription(id)}}</ion-chip> 
+  
+</div>
 <ng-container *ngIf="movies$ | async as movies; else loading" >
   <ion-grid>
     <ion-row>
