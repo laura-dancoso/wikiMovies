@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
@@ -16,6 +16,8 @@ import { StorageService } from 'src/app/shared/storage.service';
   styleUrls: ['./movies-list.component.scss'],
 })
 export class MoviesListComponent implements OnInit {
+  @Output() chipClicked = new EventEmitter();
+  
   genres?: Genre[]; 
   theaters?: Theater[];
   selectGenres?: number[] | null;
@@ -23,6 +25,7 @@ export class MoviesListComponent implements OnInit {
   movies$?: Observable<Movie[]>;
   genresId?: number[] | null;
   theatersId?: number[] | null;
+
 
   constructor(private moviesService: MoviesService,
     private filtersService: FiltersService,
