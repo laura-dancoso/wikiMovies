@@ -12,3 +12,6 @@ orientados a la gestión y apoyo a las decisiones del IFTS N°11
 
 ### 📌Link para descargar la app (apk):
 [apk](https://drive.google.com/file/d/1oFylnvcPp4A8ecKEgkDrcFB4UvX27OeQ/view?usp=sharing)
+
+### 📌Link al readme sobre cómo ejecutar el proyecto localmente:
+[readme](https://github.com/laura-dancoso/wikiMovies/blob/readme/execute-project.md)
